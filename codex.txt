@@ -11,6 +11,10 @@ Instructions for maintaining these .html and .css files
  -- <div>The content and its title and metadata must be encapsulated in divs</div>
  -- <content>This element contains the main content of a div</content>
  -- <metadata>This element contains metadata, structured in sub-elements</metadata>
+ -- <summary>A short summary in two or three sentences</summary>
+ -- <keywords>A list of keywords extracted from the content</keywords>
+ -- <characters>An optional list of characters appearing in the content. Use only for content part of a book</characters>
+ -- <references>A list of document sources, which substantiate the text in the content element</references>
 
 # Instructions
 - The data and/or metadata elements may contain the "instructions" attribute. If contained, the Agent must follow such instructions to write or update the html element's content
