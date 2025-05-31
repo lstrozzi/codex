@@ -9,6 +9,7 @@ body {
   background-color: #f9f9f9;
 }
 
+
 h1 {
   text-align: center;
   margin-bottom: 1em;
@@ -49,4 +50,39 @@ metadata {
   font-size: 0.9em;
   color: #666;
   margin-bottom: 1em;
+ }
+
+/* Book title container */
+div#title {
+  margin-bottom: 2em;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Book title element */
+div#title title {
+  font-size: 2em;
+  border-bottom: none;
+  margin-bottom: 0.5em;
+  padding-bottom: 0;
+}
+
+/* Book metadata: collection and author */
+div#title collection,
+div#title author {
+  display: block;
+  color: #555;
+}
+
+div#title collection {
+  font-size: 1.25em;
+  margin-bottom: 0.2em;
+}
+
+div#title author {
+  font-size: 1em;
+  color: #777;
 }

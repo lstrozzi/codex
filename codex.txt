@@ -12,6 +12,9 @@ Instructions for maintaining these .html and .css files
  -- <content>This element contains the main content of a div</content>
  -- <metadata>This element contains metadata, structured in sub-elements</metadata>
 
+# Instructions
+- The data and/or metadata elements may contain the "instructions" attribute. If contained, the Agent must follow such instructions to write or update the html element's content
+
 # Styles
 - The styles defined in styles.css are mostly defining how html elements have to be rendered.
 - The css classes are used not at all, or sporadingly for ad-hoc styling
