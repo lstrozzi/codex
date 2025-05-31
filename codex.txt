@@ -1,0 +1,18 @@
+Instructions for maintaining these .html and .css files
+
+# Structure
+
+- The entry point of the html pages is "main.html".
+- main.html includes (with javascript) other pages, which may optionally include other pages recursively
+- the site.css file defines styles for the whole site
+
+# Structured data and metadata
+- Data and Metadata structures are defined by using custom Html elements:
+ -- <div>The content and its title and metadata must be encapsulated in divs</div>
+ -- <Content>This element contains the main content of a div</Content>
+ -- <Metadata>This element contains metadata, structured in sub-elements</Metadata>
+
+# Styles
+- The styles defined in styles.css are mostly defining how html elements have to be rendered.
+- The css classes are used not at all, or sporadingly for ad-hoc styling
+- For each structured custom element, such as Content, Metadata, ..., there must be a defined CSS styles
