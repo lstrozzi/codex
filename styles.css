@@ -123,3 +123,18 @@ div#title author {
   font-style: italic;
   color: #777;
 }
+
+/* Toggle button for collapsible sections */
+.toggle-button {
+  background: transparent;
+  border: none;
+  color: #0066cc;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+/* Hidden state for toggled sections */
+.hidden {
+  display: none !important;
+}

@@ -11,10 +11,32 @@
 
     <div id="content-placeholder"></div>
     <script>
+        /**
+         * Initialize toggle buttons for summary and metadata sections.
+         */
+        function setupToggleSections() {
+            document.querySelectorAll('summary, metadata').forEach(function(elem) {
+                var button = document.createElement('button');
+                button.className = 'toggle-button';
+                var name = elem.tagName.toLowerCase() === 'summary' ? 'Summary' : 'Metadata';
+                button.textContent = 'Hide ' + name;
+                button.addEventListener('click', function() {
+                    elem.classList.toggle('hidden');
+                    if (elem.classList.contains('hidden')) {
+                        button.textContent = 'Show ' + name;
+                    } else {
+                        button.textContent = 'Hide ' + name;
+                    }
+                });
+                elem.parentNode.insertBefore(button, elem);
+            });
+        }
+
         fetch('content.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('content-placeholder').innerHTML = html;
+                setupToggleSections();
             })
             .catch(error => {
                 console.error('Error loading content.html:', error);
