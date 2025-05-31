@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstration of document editing capabilities</title>
+</head>
+<body>
+    <h1>Demonstration of document editing capabilities</h1>
+
+    <div id="content-placeholder"></div>
+    <script>
+        fetch('content.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('content-placeholder').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading content.html:', error);
+            });
+    </script>
+</body>
+</html>
