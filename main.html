@@ -13,7 +13,7 @@
 
     <br />
     <div id="attachments-placeholder">
-        <include location="attachment_petes_house.html" type="text/html" />
+        <include location="attachment_petes_house.html" type="text/html"></include>
     </div>
 
     <script>
@@ -21,16 +21,24 @@
         * Initialize toggle buttons for summary, metadata, and attachment sections and hide them by default.
          */
         function setupToggleSections() {
-            document.querySelectorAll('summary, metadata, include').forEach(function(elem) {
+            document.querySelectorAll('summary, metadata, attachment').forEach(function(elem) {
                 var button = document.createElement('button');
                 button.className = 'toggle-button';
                 var tag = elem.tagName.toLowerCase();
                 var name = tag.charAt(0).toUpperCase() + tag.slice(1);
                 elem.classList.add('hidden');
+                var attachmentsSection;
+                if (tag === 'include') {
+                    attachmentsSection = document.getElementById('attachments');
+                    if (attachmentsSection) attachmentsSection.classList.add('hidden');
+                }
                 button.textContent = 'Show ' + name;
                 button.addEventListener('click', function() {
                     elem.classList.toggle('hidden');
                     button.textContent = (elem.classList.contains('hidden') ? 'Show ' : 'Hide ') + name;
+                    if (tag === 'include' && attachmentsSection) {
+                        attachmentsSection.classList.toggle('hidden');
+                    }
                 });
                 elem.parentNode.insertBefore(button, elem);
             });
@@ -54,45 +62,45 @@
         }
         /**
          * Dynamically load the content for all <include> tags based on their location/type.
+         * Returns a Promise that resolves when all includes are loaded.
          */
         function setupIncludes() {
-            document.querySelectorAll('include').forEach(function(elem) {
+            var includes = Array.from(document.querySelectorAll('include'));
+            var promises = includes.map(function(elem) {
                 var location = elem.getAttribute('location');
-                var type = elem.getAttribute('type');
-                fetch(location)
+                var type     = elem.getAttribute('type');
+                return fetch(location)
                     .then(function(response) {
-                        if (type === 'text/html') {
-                            return response.text();
-                        }
                         return response.text();
                     })
                     .then(function(data) {
                         if (type === 'text/html') {
-                            var wrapper = document.createElement('div');
-                            wrapper.innerHTML = data;
-                            elem.parentNode.replaceChild(wrapper, elem);
+                            elem.innerHTML = data;
                         } else {
                             var pre = document.createElement('pre');
                             pre.textContent = data;
-                            elem.parentNode.replaceChild(pre, elem);
+                            elem.appendChild(pre);
                         }
                     })
                     .catch(function(err) {
                         console.error('Error loading include:', location, err);
                     });
             });
+            return Promise.all(promises);
         }
 
         fetch('content.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('content-placeholder').innerHTML = html;
-                setupIncludes();
+                return setupIncludes();
+            })
+            .then(() => {
                 setupAttachments();
                 setupToggleSections();
             })
             .catch(error => {
-                console.error('Error loading content.html:', error);
+                console.error('Error loading content.html or includes:', error);
             });
     </script>
 </body>
