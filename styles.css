@@ -71,6 +71,7 @@ metadata references {
   border-radius: 4px;
   padding: 0.75em;
   margin-bottom: 1em;
+  display: block;
 }
 
 /* Labels for metadata fields */
