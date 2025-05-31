@@ -138,3 +138,9 @@ div#title author {
 .hidden {
   display: none !important;
 }
+
+attachment {
+  display: block;
+  color: #555;
+  margin-top: 1em;
+}

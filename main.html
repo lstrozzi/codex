@@ -10,6 +10,10 @@
     <h1>Demonstration of document editing capabilities</h1>
 
     <div id="content-placeholder"></div>
+
+    <br />
+    <div id="attachments-placeholder"></div>
+
     <script>
         /**
          * Initialize toggle buttons for summary and metadata sections and hide them by default.
@@ -33,11 +37,29 @@
             });
         }
 
+        function setupAttachments() {
+            var contentPlaceholder = document.getElementById('attachments-placeholder');
+            var attachments = contentPlaceholder.querySelectorAll('attachment');
+            if (attachments.length > 0) {
+                var placeholder = document.getElementById('attachments-placeholder');
+                var section = document.createElement('div');
+                section.id = 'attachments';
+                var header = document.createElement('h2');
+                header.textContent = 'Attachments';
+                section.appendChild(header);
+                attachments.forEach(function(att) {
+                    section.appendChild(att);
+                });
+                placeholder.appendChild(section);
+            }
+        }
+
         fetch('content.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('content-placeholder').innerHTML = html;
                 setupToggleSections();
+                setupAttachments();
             })
             .catch(error => {
                 console.error('Error loading content.html:', error);
