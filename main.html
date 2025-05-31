@@ -13,36 +13,24 @@
 
     <br />
     <div id="attachments-placeholder">
-        <attachment id="petes-house" type="text/html">
-            <title>Description of Peter the Fisherman's house</title>
-            <content>
-                <p>Pete's house stands atop a windswept bluff overlooking the harbor, its weather-beaten shutters framing the ever-changing sea beyond. The exterior walls, constructed from hand-hewn driftwood planks, bear the silvered patina of countless storms and sunlit afternoons.</p>
-                <p>Inside, the main room centers around a broad stone hearth, where a steady glow of embers offers warmth against the ocean chill. Sturdy wooden beams support the low ceiling, and rough-hewn furniture, crafted by Pete himself, adorns the space, each scratched surface telling stories of long nights spent mending nets and charting tides.</p>
-                <p>The modest kitchen nook features a well-worn oak table scarred by years of fish scales and saltwater. Copper pots hang from wrought-iron hooks, and jars of dried herbs line a narrow shelf above the single-pane window that peers out onto the rocky cove below.</p>
-                <p>Upstairs, two small chambers are separated by a low door; one serves as Pete's sleeping quarters, its straw-filled mattress nestled beneath a slanted roof, while the other houses his maps and trinkets, laid out on a small writing desk illuminated by a single lantern.</p>
-                <p>Outside, a narrow path leads around the cottage to a humble boathouse where Pete's lean skiff rests on wooden stilts. A tangle of fishing lines and nets hangs from pegs along the wall, and a scattering of wildflowers clings to the rocky soil, their delicate blooms providing a quiet contrast to the house's rugged charm.</p>
-            </content>
-        </attachment>
+        <include location="attachment_petes_house.html" type="text/html" />
     </div>
 
     <script>
         /**
-         * Initialize toggle buttons for summary and metadata sections and hide them by default.
+        * Initialize toggle buttons for summary, metadata, and attachment sections and hide them by default.
          */
         function setupToggleSections() {
-            document.querySelectorAll('summary, metadata').forEach(function(elem) {
+            document.querySelectorAll('summary, metadata, include').forEach(function(elem) {
                 var button = document.createElement('button');
                 button.className = 'toggle-button';
-                var name = elem.tagName.toLowerCase() === 'summary' ? 'Summary' : 'Metadata';
+                var tag = elem.tagName.toLowerCase();
+                var name = tag.charAt(0).toUpperCase() + tag.slice(1);
                 elem.classList.add('hidden');
                 button.textContent = 'Show ' + name;
                 button.addEventListener('click', function() {
                     elem.classList.toggle('hidden');
-                    if (elem.classList.contains('hidden')) {
-                        button.textContent = 'Show ' + name;
-                    } else {
-                        button.textContent = 'Hide ' + name;
-                    }
+                    button.textContent = (elem.classList.contains('hidden') ? 'Show ' : 'Hide ') + name;
                 });
                 elem.parentNode.insertBefore(button, elem);
             });
@@ -64,13 +52,44 @@
                 placeholder.appendChild(section);
             }
         }
+        /**
+         * Dynamically load the content for all <include> tags based on their location/type.
+         */
+        function setupIncludes() {
+            document.querySelectorAll('include').forEach(function(elem) {
+                var location = elem.getAttribute('location');
+                var type = elem.getAttribute('type');
+                fetch(location)
+                    .then(function(response) {
+                        if (type === 'text/html') {
+                            return response.text();
+                        }
+                        return response.text();
+                    })
+                    .then(function(data) {
+                        if (type === 'text/html') {
+                            var wrapper = document.createElement('div');
+                            wrapper.innerHTML = data;
+                            elem.parentNode.replaceChild(wrapper, elem);
+                        } else {
+                            var pre = document.createElement('pre');
+                            pre.textContent = data;
+                            elem.parentNode.replaceChild(pre, elem);
+                        }
+                    })
+                    .catch(function(err) {
+                        console.error('Error loading include:', location, err);
+                    });
+            });
+        }
 
         fetch('content.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('content-placeholder').innerHTML = html;
-                setupToggleSections();
+                setupIncludes();
                 setupAttachments();
+                setupToggleSections();
             })
             .catch(error => {
                 console.error('Error loading content.html:', error);
