@@ -23,3 +23,8 @@ Instructions for maintaining these .html and .css files
 - The styles defined in styles.css are mostly defining how html elements have to be rendered.
 - The css classes are used not at all, or sporadingly for ad-hoc styling
 - For each structured custom element, such as Content, Metadata, ..., there must be a defined CSS styles
+
+# Commands
+- When the user requests to "update the document" or "update all documents", each document to be updated will be treated as follows:
+ -- each <div> will be inspected, if the structured data and/or metadata need to be updated, based on the instructions
+ -- if yes, an update needs to occur

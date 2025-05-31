@@ -12,14 +12,15 @@
     <div id="content-placeholder"></div>
     <script>
         /**
-         * Initialize toggle buttons for summary and metadata sections.
+         * Initialize toggle buttons for summary and metadata sections and hide them by default.
          */
         function setupToggleSections() {
             document.querySelectorAll('summary, metadata').forEach(function(elem) {
                 var button = document.createElement('button');
                 button.className = 'toggle-button';
                 var name = elem.tagName.toLowerCase() === 'summary' ? 'Summary' : 'Metadata';
-                button.textContent = 'Hide ' + name;
+                elem.classList.add('hidden');
+                button.textContent = 'Show ' + name;
                 button.addEventListener('click', function() {
                     elem.classList.toggle('hidden');
                     if (elem.classList.contains('hidden')) {
