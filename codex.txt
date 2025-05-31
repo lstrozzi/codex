@@ -9,8 +9,8 @@ Instructions for maintaining these .html and .css files
 # Structured data and metadata
 - Data and Metadata structures are defined by using custom Html elements:
  -- <div>The content and its title and metadata must be encapsulated in divs</div>
- -- <Content>This element contains the main content of a div</Content>
- -- <Metadata>This element contains metadata, structured in sub-elements</Metadata>
+ -- <content>This element contains the main content of a div</content>
+ -- <metadata>This element contains metadata, structured in sub-elements</metadata>
 
 # Styles
 - The styles defined in styles.css are mostly defining how html elements have to be rendered.
