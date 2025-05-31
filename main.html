@@ -12,9 +12,7 @@
     <div id="content-placeholder"></div>
 
     <br />
-    <div id="attachments-placeholder">
-        <include location="attachment_petes_house.html" type="text/html"></include>
-    </div>
+    <include location="attachment_petes_house.html" type="text/html"></include>
 
     <script>
         /**
@@ -42,23 +40,6 @@
                 });
                 elem.parentNode.insertBefore(button, elem);
             });
-        }
-
-        function setupAttachments() {
-            var contentPlaceholder = document.getElementById('attachments-placeholder');
-            var attachments = contentPlaceholder.querySelectorAll('attachment');
-            if (attachments.length > 0) {
-                var placeholder = document.getElementById('attachments-placeholder');
-                var section = document.createElement('div');
-                section.id = 'attachments';
-                var header = document.createElement('h2');
-                header.textContent = 'Attachments';
-                section.appendChild(header);
-                attachments.forEach(function(att) {
-                    section.appendChild(att);
-                });
-                placeholder.appendChild(section);
-            }
         }
         /**
          * Dynamically load the content for all <include> tags based on their location/type.
@@ -96,7 +77,6 @@
                 return setupIncludes();
             })
             .then(() => {
-                setupAttachments();
                 setupToggleSections();
             })
             .catch(error => {
