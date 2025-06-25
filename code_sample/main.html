@@ -56,9 +56,38 @@
                 });
         }
 
-        loadAllFiles().catch(error => {
-            console.error('Error loading files:', error);
-        });
+        loadAllFiles()
+            .then(() => setupToggleSections())
+            .catch(error => {
+                console.error('Error loading files:', error);
+            });
+
+        /**
+        * Initialize toggle buttons for summary, metadata, attachment, and include sections and hide them by default.
+        */
+        function setupToggleSections() {
+            document.querySelectorAll('metadata, content').forEach(function(elem) {
+                var button = document.createElement('button');
+                button.className = 'toggle-button';
+                var tag = elem.tagName.toLowerCase();
+                var name = tag.charAt(0).toUpperCase() + tag.slice(1);
+                elem.classList.add('hidden');
+                var attachmentsSection;
+                if (tag === 'include') {
+                    attachmentsSection = document.getElementById('attachments');
+                    if (attachmentsSection) attachmentsSection.classList.add('hidden');
+                }
+                button.textContent = 'Show ' + name;
+                button.addEventListener('click', function() {
+                    elem.classList.toggle('hidden');
+                    button.textContent = (elem.classList.contains('hidden') ? 'Show ' : 'Hide ') + name;
+                    if (tag === 'include' && attachmentsSection) {
+                        attachmentsSection.classList.toggle('hidden');
+                    }
+                });
+                elem.parentNode.insertBefore(button, elem);
+            });
+        }
     </script>
 </body>
 </html>

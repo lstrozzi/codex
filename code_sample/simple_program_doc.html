@@ -1,5 +1,5 @@
 <div id="doc-title" class="document-header" minOccur="1" maxOccur="1"></div>
-    <title>Simple Program</title>
+    <document_title>Simple Program</document_title>
     <description>A simple Python program that prints a greeting message and performs basic arithmetic operations.</description>
     <author>Unknown</author>
     <version>1.0</version>
@@ -11,7 +11,7 @@
     <summary instructions="Provide a concise summary of the code element described in <content> (1-2 sentences, no formatting)">
         The main section handles user input, greets the user, and demonstrates arithmetic functions.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>None</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -21,7 +21,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>Run the script directly to interact with the program.</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>if __name__ == "__main__":
     user_name = input("Enter your name: ")
     greet(user_name)
@@ -42,7 +42,7 @@
     <summary>
         Prints a personalized greeting message to the console.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>name: str</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -52,7 +52,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>greet("Alice")</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>def greet(name):
     print(f"Hello, {name}!")
 </code></pre>
@@ -65,7 +65,7 @@
     <summary>
         Returns the sum of two numbers.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>a: float, b: float</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -75,7 +75,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>add(2, 3)  # 5</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>def add(a, b):
     return a + b
 </code></pre>
@@ -88,7 +88,7 @@
     <summary>
         Returns the difference between two numbers.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>a: float, b: float</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -98,7 +98,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>subtract(5, 2)  # 3</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>def subtract(a, b):
     return a - b
 </code></pre>
@@ -111,7 +111,7 @@
     <summary>
         Returns the product of two numbers.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>a: float, b: float</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -121,7 +121,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>multiply(2, 4)  # 8</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>def multiply(a, b):
     return a * b
 </code></pre>
@@ -134,7 +134,7 @@
     <summary>
         Returns the quotient of two numbers, or an error message if dividing by zero.
     </summary>
-    <metadata>
+    <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
         <parameters>a: float, b: float</parameters>
         <div class="meta-label"><strong>Returns:</strong></div>
@@ -144,7 +144,7 @@
         <div class="meta-label"><strong>Examples:</strong></div>
         <examples>divide(10, 2)  # 5.0<br>divide(5, 0)  # "Error: Division by zero"</examples>
     </metadata>
-    <content>
+    <content class="hidden">
         <pre><code>def divide(a, b):
     if b == 0:
         return "Error: Division by zero"
