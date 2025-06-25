@@ -1,0 +1,124 @@
+/* code_doc.css - Styles for code documentation HTML files */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+    margin: 0;
+    padding: 0 1.5em 2em 1.5em;
+}
+
+#doc-title {
+    background: #2d3e50;
+    color: #fff;
+    padding: 1.2em 1em 1em 1em;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0.5em;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+title, description, author, version, date {
+    display: block;
+    font-size: 1.1em;
+    margin: 0.2em 0 0.2em 0.5em;
+    color: #3a4a5a;
+}
+
+div[id^="section-"] {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0 0 8px 8px;
+    margin-bottom: 1.5em;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+    padding: 1.2em 1.5em;
+}
+
+div[id^="section-"] > title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #2d3e50;
+    margin-bottom: 0.3em;
+}
+
+summary {
+    background: #eaf6ff;
+    border-left: 4px solid #2196f3;
+    padding: 0.7em 1em;
+    margin: 0.5em 0 1em 0;
+    font-style: italic;
+    color: #1a3a5a;
+    border-radius: 4px;
+}
+
+metadata {
+    display: block;
+    background: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 0.7em 1em;
+    margin-bottom: 1em;
+    font-size: 0.98em;
+    color: #444;
+}
+
+metadata > parameters,
+metadata > returns,
+metadata > dependencies,
+metadata > examples {
+    display: block;
+    margin: 0.2em 0;
+    padding-left: 1em;
+}
+
+content {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+pre, code {
+    background: #f6f8fa;
+    color: #2d3e50;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 1em;
+    border-radius: 4px;
+}
+
+pre {
+    padding: 1em;
+    overflow-x: auto;
+    border: 1px solid #e0e0e0;
+    margin: 0.5em 0 1em 0;
+}
+
+code {
+    padding: 0.1em 0.3em;
+}
+
+.document-header {
+    background: linear-gradient(90deg, #2d3e50 60%, #2196f3 100%);
+    color: #fff;
+    padding: 1.5em 1.2em 1.2em 1.2em;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 1.2em;
+    font-size: 2.2em;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    box-shadow: 0 2px 10px rgba(44,62,80,0.08);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    body {
+        padding: 0.5em;
+    }
+    div[id^="section-"] {
+        padding: 0.7em 0.5em;
+    }
+}
