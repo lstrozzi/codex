@@ -18,7 +18,7 @@
         * Initialize toggle buttons for summary, metadata, and attachment sections and hide them by default.
          */
         function setupToggleSections() {
-            document.querySelectorAll('summary, metadata, attachment').forEach(function(elem) {
+            document.querySelectorAll('summary, metadata, attachment, include').forEach(function(elem) {
                 var button = document.createElement('button');
                 button.className = 'toggle-button';
                 var tag = elem.tagName.toLowerCase();
@@ -40,6 +40,7 @@
                 elem.parentNode.insertBefore(button, elem);
             });
         }
+        
         /**
          * Dynamically load the content for all <include> tags based on their location/type.
          * Returns a Promise that resolves when all includes are loaded.
@@ -69,17 +70,53 @@
             return Promise.all(promises);
         }
 
-        fetch('content.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('content-placeholder').innerHTML = html;
-                return setupIncludes();
-            })
-            .then(() => {
-                setupToggleSections();
-            })
+        /**
+         * Load and include all HTML files listed in filelist.json except main.html.
+         */
+        function loadAllHtmlFiles() {
+            return fetch('filelist.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Could not load filelist.json. Make sure you are running a local web server and filelist.json exists.');
+                    }
+                    return response.json();
+                })
+                .then(files => {
+                    // Filter out main.html
+                    const htmlFiles = files.filter(f => f !== 'main.html' && f.endsWith('.html'));
+                    const placeholder = document.getElementById('content-placeholder');
+                    // Fetch and append each HTML file
+                    return Promise.all(htmlFiles.map(file => 
+                        fetch(file)
+                            .then(res => {
+                                if (!res.ok) {
+                                    throw new Error(`Could not fetch ${file}`);
+                                }
+                                return res.text();
+                            })
+                            .then(html => {
+                                const div = document.createElement('div');
+                                div.className = 'included-html-file';
+                                div.setAttribute('data-filename', file);
+                                div.innerHTML = html;
+                                placeholder.appendChild(div);
+                            })
+                            .catch(err => {
+                                console.error(`Error loading ${file}:`, err.message);
+                            })
+                    ));
+                })
+                .catch(err => {
+                    console.error('Error loading filelist.json:', err.message);
+                    throw err;
+                });
+        }
+
+        loadAllHtmlFiles()
+            .then(() => setupIncludes())
+            .then(() => setupToggleSections())
             .catch(error => {
-                console.error('Error loading content.html or includes:', error);
+                console.error('Error loading HTML files or includes:', error);
             });
     </script>
 </body>
