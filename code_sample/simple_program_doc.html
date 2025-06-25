@@ -1,6 +1,6 @@
 <div id="doc-title" class="document-header" minOccur="1" maxOccur="1"></div>
     <title>Simple Program</title>
-    <description>A simple Python program that prints a greeting message.</description>
+    <description>A simple Python program that prints a greeting message and performs basic arithmetic operations.</description>
     <author>Unknown</author>
     <version>1.0</version>
     <date>June 25, 2025</date>
@@ -9,21 +9,147 @@
 <div id="section-1" minOccur="1" maxOccur="unbounded">
     <title>Section 1: main</title>
     <summary instructions="Provide a concise summary of the code element described in <content> (1-2 sentences, no formatting)">
-        The main function prints a greeting message to the console.
+        The main section handles user input, greets the user, and demonstrates arithmetic functions.
     </summary>
     <metadata>
-        <parameters instructions="List parameters and their types, as a comma-separated list (e.g., param1: type, param2: type)">None</parameters>
-        <returns instructions="Describe the return value and its type">None</returns>
-        <dependencies instructions="List any dependencies or related modules/classes">Standard Python libraries only</dependencies>
-        <examples instructions="List example usages or references to code samples">main()</examples>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>None</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>None</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>Standard Python libraries only</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>Run the script directly to interact with the program.</examples>
     </metadata>
     <content>
-        <pre><code>def main():
-    print("Hello, world!")
-
-if __name__ == "__main__":
-    main()
+        <pre><code>if __name__ == "__main__":
+    user_name = input("Enter your name: ")
+    greet(user_name)
+    print("\nLet's do some math!")
+    x = float(input("Enter the first number: "))
+    y = float(input("Enter the second number: "))
+    print(f"{x} + {y} = {add(x, y)}")
+    print(f"{x} - {y} = {subtract(x, y)}")
+    print(f"{x} * {y} = {multiply(x, y)}")
+    print(f"{x} / {y} = {divide(x, y)}")
 </code></pre>
-        <p>This function serves as the entry point of the program and outputs a simple greeting.</p>
+        <p>This section is the entry point of the program, handling user interaction and calling arithmetic functions.</p>
+    </content>
+</div>
+
+<div id="section-2">
+    <title>Section 2: greet</title>
+    <summary>
+        Prints a personalized greeting message to the console.
+    </summary>
+    <metadata>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>name: str</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>None</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>None</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>greet("Alice")</examples>
+    </metadata>
+    <content>
+        <pre><code>def greet(name):
+    print(f"Hello, {name}!")
+</code></pre>
+        <p>Outputs a greeting using the provided name.</p>
+    </content>
+</div>
+
+<div id="section-3">
+    <title>Section 3: add</title>
+    <summary>
+        Returns the sum of two numbers.
+    </summary>
+    <metadata>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>a: float, b: float</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>float</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>None</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>add(2, 3)  # 5</examples>
+    </metadata>
+    <content>
+        <pre><code>def add(a, b):
+    return a + b
+</code></pre>
+        <p>Adds two numbers and returns the result.</p>
+    </content>
+</div>
+
+<div id="section-4">
+    <title>Section 4: subtract</title>
+    <summary>
+        Returns the difference between two numbers.
+    </summary>
+    <metadata>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>a: float, b: float</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>float</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>None</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>subtract(5, 2)  # 3</examples>
+    </metadata>
+    <content>
+        <pre><code>def subtract(a, b):
+    return a - b
+</code></pre>
+        <p>Subtracts the second number from the first and returns the result.</p>
+    </content>
+</div>
+
+<div id="section-5">
+    <title>Section 5: multiply</title>
+    <summary>
+        Returns the product of two numbers.
+    </summary>
+    <metadata>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>a: float, b: float</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>float</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>None</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>multiply(2, 4)  # 8</examples>
+    </metadata>
+    <content>
+        <pre><code>def multiply(a, b):
+    return a * b
+</code></pre>
+        <p>Multiplies two numbers and returns the result.</p>
+    </content>
+</div>
+
+<div id="section-6">
+    <title>Section 6: divide</title>
+    <summary>
+        Returns the quotient of two numbers, or an error message if dividing by zero.
+    </summary>
+    <metadata>
+        <div class="meta-label"><strong>Parameters:</strong></div>
+        <parameters>a: float, b: float</parameters>
+        <div class="meta-label"><strong>Returns:</strong></div>
+        <returns>float or str</returns>
+        <div class="meta-label"><strong>Dependencies:</strong></div>
+        <dependencies>None</dependencies>
+        <div class="meta-label"><strong>Examples:</strong></div>
+        <examples>divide(10, 2)  # 5.0<br>divide(5, 0)  # "Error: Division by zero"</examples>
+    </metadata>
+    <content>
+        <pre><code>def divide(a, b):
+    if b == 0:
+        return "Error: Division by zero"
+    return a / b
+</code></pre>
+        <p>Divides the first number by the second. Returns an error message if the divisor is zero.</p>
     </content>
 </div>

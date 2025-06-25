@@ -20,6 +20,8 @@ Instructions for maintaining these .html and .css files
  -- <references>A list of document sources, which substantiate the text in the content element</references>
 
 # Global Instructions
+- There are "template" documents, that contain instructions for the Agent.
+- The actual html documents must not duplicate the instructions from the templates.
 - The data and/or metadata elements may contain the "instructions" attribute. If contained, the Agent must follow such element instructions to write or update the html element's text content.
 - The Agent must not change the structure of the html elements, but only their text content.
 
