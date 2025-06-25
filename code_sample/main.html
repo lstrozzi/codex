@@ -56,12 +56,6 @@
                 });
         }
 
-        loadAllFiles()
-            .then(() => setupToggleSections())
-            .catch(error => {
-                console.error('Error loading files:', error);
-            });
-
         /**
         * Initialize toggle buttons for summary, metadata, attachment, and include sections and hide them by default.
         */
@@ -70,7 +64,7 @@
                 var button = document.createElement('button');
                 button.className = 'toggle-button';
                 var tag = elem.tagName.toLowerCase();
-                var name = tag.charAt(0).toUpperCase() + tag.slice(1);
+                var name = (tag === 'content') ? 'Code' : (tag.charAt(0).toUpperCase() + tag.slice(1));
                 elem.classList.add('hidden');
                 var attachmentsSection;
                 if (tag === 'include') {
@@ -88,6 +82,12 @@
                 elem.parentNode.insertBefore(button, elem);
             });
         }
+
+        loadAllFiles()
+            .then(() => setupToggleSections())
+            .catch(error => {
+                console.error('Error loading files:', error);
+            });
     </script>
 </body>
 </html>
