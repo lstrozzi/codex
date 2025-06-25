@@ -7,7 +7,7 @@
 </div>
 
 <div id="section-1" minOccur="1" maxOccur="unbounded">
-    <title>Function: main()</title>
+    <title>Main Program</title>
     <summary> The main section handles user input, greets the user, and demonstrates arithmetic functions.</summary>
     <metadata class="hidden">
         <div class="meta-label"><strong>Parameters:</strong></div>
@@ -22,21 +22,20 @@
     <content class="hidden">
         <pre><code>if __name__ == "__main__":
     user_name = input("Enter your name: ")
-    greet(user_name)
+    greet_by_name(user_name)
     print("\nLet's do some math!")
     x = float(input("Enter the first number: "))
     y = float(input("Enter the second number: "))
     print(f"{x} + {y} = {add(x, y)}")
     print(f"{x} - {y} = {subtract(x, y)}")
     print(f"{x} * {y} = {multiply(x, y)}")
-    print(f"{x} / {y} = {divide(x, y)}")
 </code></pre>
         <p>This section is the entry point of the program, handling user interaction and calling arithmetic functions.</p>
     </content>
 </div>
 
 <div id="section-2">
-    <title>Function: greet()</title>
+    <title>Function: greet_by_name()</title>
     <summary>
         Prints a personalized greeting message to the console.
     </summary>
@@ -48,10 +47,10 @@
         <div class="meta-label"><strong>Dependencies:</strong></div>
         <dependencies>None</dependencies>
         <div class="meta-label"><strong>Examples:</strong></div>
-        <examples>greet("Alice")</examples>
+        <examples>greet_by_name("Alice")</examples>
     </metadata>
     <content class="hidden">
-        <pre><code>def greet(name):
+        <pre><code>def greet_by_name(name):
     print(f"Hello, {name}!")
 </code></pre>
         <p>Outputs a greeting using the provided name.</p>
@@ -124,30 +123,5 @@
     return a * b
 </code></pre>
         <p>Multiplies two numbers and returns the result.</p>
-    </content>
-</div>
-
-<div id="section-6">
-    <title>Function: divide()</title>
-    <summary>
-        Returns the quotient of two numbers, or an error message if dividing by zero.
-    </summary>
-    <metadata class="hidden">
-        <div class="meta-label"><strong>Parameters:</strong></div>
-        <parameters>a: float, b: float</parameters>
-        <div class="meta-label"><strong>Returns:</strong></div>
-        <returns>float or str</returns>
-        <div class="meta-label"><strong>Dependencies:</strong></div>
-        <dependencies>None</dependencies>
-        <div class="meta-label"><strong>Examples:</strong></div>
-        <examples>divide(10, 2)  # 5.0<br>divide(5, 0)  # "Error: Division by zero"</examples>
-    </metadata>
-    <content class="hidden">
-        <pre><code>def divide(a, b):
-    if b == 0:
-        return "Error: Division by zero"
-    return a / b
-</code></pre>
-        <p>Divides the first number by the second. Returns an error message if the divisor is zero.</p>
     </content>
 </div>

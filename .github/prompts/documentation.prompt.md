@@ -40,3 +40,4 @@ Instructions for maintaining these .html and .css files
  -- the "master information" is in each <content> element. The other elements (such as <metadata>, <summary>) are based on the content of the <content> element
  -- each <div> will be inspected, if the structured data and/or metadata need to be updated, based on the instructions
  -- if the <metadata>, <summary> elements and sub-elements need to be updated, the Agent will update them based on the content of the <content> element
+- When the user requests to "update the html documentation", the Agent will search for appropriate .html file corresponding to the current editor, which is ending in _doc.html. For example: file.py has file_doc.html documentation. The Agent will update the _doc.html according to the above-mentioned instructions, including <content>, <metadata>, <content> and <summary> elements where appropriate.
