@@ -61,10 +61,13 @@ div[id^="section-"] {
 }
 
 div[id^="section-"] > title {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #2d3e50;
-    margin-bottom: 0.3em;
+  display: block;
+  font-size: 1.15em;
+  font-weight: bold;
+  color: #2d3e50;
+  margin-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.1em;
 }
 
 summary {
